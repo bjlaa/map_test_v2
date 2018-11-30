@@ -28,9 +28,6 @@ import { mapMutations } from 'vuex'
 
 export default {
   name: 'HelloWorld',
-  updated() {
-    console.log(this.$store.state)
-  },
   data() {
     return {
     }
