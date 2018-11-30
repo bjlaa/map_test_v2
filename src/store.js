@@ -8,14 +8,19 @@ export default new Vuex.Store({
     isShowingModalCloseButton: true,
     modalContent: true
   },
+  getters: {
+    isShowingModalCloseButton: state => state.isShowingModalCloseButton,
+    modalContent: state => state.modalContent
+  },
   mutations: {
     toggleModal(state, modalContent, isShowingModalCloseButton) {
-      console.log('test')
-      state.modalContent = modalContent
-      state.isShowingModalCloseButton = isShowingModalCloseButton ? isShowingModalCloseButton : false
+      Vue.set(state, 'modalContent', modalContent)
+      Vue.set(state, 'isShowingModalCloseButton', isShowingModalCloseButton ? isShowingModalCloseButton : false)
     }
   },
   actions: {
-
+    toggleModal(context, modalContent, isShowingModalCloseButton) {
+      context.commit('toggleModal', modalContent, isShowingModalCloseButton)
+    }
   },
 });

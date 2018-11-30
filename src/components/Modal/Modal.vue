@@ -28,10 +28,19 @@ import { mapMutations } from 'vuex'
 
 export default {
   name: 'HelloWorld',
+  updated() {
+    console.log(this.$store.state)
+  },
   data() {
     return {
-      modalContent: this.$store.state.modalContent,
-      isShowingModalCloseButton: this.$store.state.isShowingModalCloseButton
+    }
+  },
+  computed: {
+    isShowingModalCloseButton() {
+      return this.$store.getters.isShowingModalCloseButton
+    },
+    modalContent() {
+      return this.$store.getters.modalContent
     }
   },
   methods: {
@@ -39,7 +48,7 @@ export default {
       'toggleModal'
     ]),
     toggleModal(modalContent, isShowingModalCloseButton) {
-      this.$store.commit('toggleModal', modalContent, isShowingModalCloseButton)
+      this.$store.dispatch('toggleModal', modalContent, isShowingModalCloseButton)
     }
   }
 };
