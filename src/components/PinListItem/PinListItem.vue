@@ -1,59 +1,109 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest" target="_blank" rel="noopener">unit-jest</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+          <div class="sideBarPinListItem">
+              <div class="sideBarPinListItemIcon">
+                <img
+                  class="sideBarPinListItemIconImage"
+                  src="./assets/beers.png"
+                >
+              </div>
+              <div class="sideBarNameAuthor">
+                <div class="sideBarPinListItemName">{{ currentEvent.bestPin.name }}</div>
+                <div v-if='currentEvent.bestPin.author' class="sideBarPinListItemAuthor">suggested by {{ currentEvent.bestPin.author }}</div>                
+              </div>
+              <button
+                @click="increaseScorePin(0)"
+                class="sideBarPinListItemLikeButton"
+              >
+                <i class="fas fa-heart"></i>
+                <span
+                  v-show="currentEvent.pins[0].score > 0"
+                >{{ currentEvent.bestPin.score ? currentEvent.bestPin.score : null}}</span>
+              </button>
+              <button
+                @click="deletePin(index)"
+                class="sideBarPinListItemDeleteButton"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- S'il y a un best pin on retire le premier pin de la liste à afficher -->
+          <div
+            v-if="currentEvent.pins.length > 0 && currentEvent.bestPin"
+            v-for="(pin, index) in Array.from(currentEvent.pins).splice(1, currentEvent.pins.length - 1)"
+            class="sideBarPinListItem"
+            @click="selectPin(pin.id)"
+          >
+            <div class="sideBarPinListItemIcon">
+              <img
+                class="sideBarPinListItemIconImage"
+                src="./assets/markerIcon.png"
+              >
+            </div>
+            <div class="sideBarNameAuthor">
+              <div class="sideBarPinListItemName">{{ pin.name }}</div>
+              <div v-if='pin.author' class="sideBarPinListItemAuthor">suggested by {{ pin.author }}</div>
+            </div>
+            <button
+              @click="increaseScorePin(index+1)"
+              class="sideBarPinListItemLikeButton"
+            >
+              <i class="fas fa-heart"></i>
+              <span
+                v-show="pin.score > 0"
+              >{{ pin.score ? pin.score : null}}</span>
+            </button>
+            <button
+              @click="deletePin(index)"
+              class="sideBarPinListItemDeleteButton"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+  
+          <!-- S'il n'y a pas de best pin on affiche la liste normale -->
+          <div
+            v-if="currentEvent.pins.length > 0 && !currentEvent.bestPin"
+            v-for="(pin, index) in Array.from(currentEvent.pins)"
+            class="sideBarPinListItem"
+            @click="selectPin(pin.id)"
+          >
+            <div class="sideBarPinListItemIcon">
+              <img
+                class="sideBarPinListItemIconImage"
+                src="./assets/markerIcon.png"
+              >
+            </div>
+            <div class="sideBarNameAuthor">
+              <div class="sideBarPinListItemName">{{ pin.name }} </div>
+              <div v-if='pin.author' class="sideBarPinListItemAuthor">suggested by {{ pin.author }}</div>
+            </div>
+            <div class="sideBarPinListItemScore">
+
+            </div>
+            <button
+              @click="increaseScorePin(index)"
+              class="sideBarPinListItemLikeButton"
+            >
+              <i class="fas fa-heart"></i>
+              <span
+                v-show="pin.score > 0"
+              >{{ pin.score ? pin.score : null }}</span>
+            </button>
+            <button
+              @click="deletePin(index)"
+              class="sideBarPinListItemDeleteButton"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
-};
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-h3
-  margin 40px 0 0
 
-ul
-  list-style-type none
-  padding 0
-
-li
-  display inline-block
-  margin 0 10px
-
-a
-  color #42b983
 </style>
