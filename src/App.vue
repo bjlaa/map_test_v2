@@ -1,21 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <Modal />
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Map />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 import Modal from './components/Modal/Modal.vue'
+import Map from './components/Map/Map.vue'
+
+// Methods
+import { initMap, getLocation, centerMap } from './methods/map'
+import { initFirebase } from './methods/firebase-init'
+import {
+  createEvent,
+  toggleCreateEventModal,
+  toggleShareEventModal,
+  generateUUID,
+  fetchEvent,
+  updateEvent,
+  updateEventFromDB
+} from './methods/event'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    Modal
+    Modal,
+    Map
   },
+  methods: {
+    /*
+    * Map part
+    */
+    initMap,
+    getLocation,
+    centerMap
+
+    /*
+    * Firebase
+    */
+    initFirebase,
+
+    /*
+    * Event
+    */
+
+  }
 };
 </script>
 <style lang="stylus">
