@@ -15,7 +15,9 @@ module.exports = {
     'func-names': 0,
     'no-param-reassign': 0,
     'max-len': 0,
-    'no-unneeded-ternary': 0
+    'no-unneeded-ternary': 0,
+    'no-trailing-spaces': 0,
+    'import/prefer-default-export': 0,
   },
   parserOptions: {
     parser: 'babel-eslint',

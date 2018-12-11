@@ -24,29 +24,12 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-    }
-  },
-  computed: {
-    isShowingModalCloseButton() {
-      return this.$store.getters.isShowingModalCloseButton
-    },
-    modalContent() {
-      return this.$store.getters.modalContent
-    }
-  },
-  methods: {
-    ...mapMutations([
-      'toggleModal'
-    ]),
-    toggleModal(modalContent, isShowingModalCloseButton) {
-      this.$store.dispatch('toggleModal', modalContent, isShowingModalCloseButton)
-    }
+  name: 'Modal',
+  props: {
+    modalContent: [Object, Boolean],
+    toggleModal: Function,
+    isShowingModalCloseButton: Boolean
   }
 };
 </script>
