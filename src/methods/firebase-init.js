@@ -1,19 +1,21 @@
-export const initFirebase = function() {
+import SETTINGS from '../settings'
+
+export const initFirebase = function () {
   // We initialize Firebase
   const config = {
-    apiKey: "AIzaSyA3t1HqYqWLx62jVb8mc1ZuQ_l1pm6FBxI",
-    authDomain: "wigot-220414.firebaseapp.com",
-    databaseURL: "https://wigot-220414.firebaseio.com",
-    projectId: "wigot-220414",
-    storageBucket: "wigot-220414.appspot.com",
-    messagingSenderId: "1057857701694"
+    apiKey: 'AIzaSyA3t1HqYqWLx62jVb8mc1ZuQ_l1pm6FBxI',
+    authDomain: 'wigot-220414.firebaseapp.com',
+    databaseURL: 'https://wigot-220414.firebaseio.com',
+    projectId: 'wigot-220414',
+    storageBucket: 'wigot-220414.appspot.com',
+    messagingSenderId: '1057857701694'
   }
   const self = this
-  firebase.initializeApp(config)
+  window.firebase.initializeApp(config)
 
   // Here we create a ref to our Firebase DB and store it in the global state
   // Now we can access our database!
-  const db = firebase.database()
+  const db = window.firebase.database()
   this.db = db
 
   if (this.eventID) {

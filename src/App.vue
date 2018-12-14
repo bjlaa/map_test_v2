@@ -2,61 +2,116 @@
   <div id="app">
     <Modal v-bind="{ modalContent, toggleModal, isShowingModalCloseButton }" />
     <Map v-bind="{ initMap }"/>
+    <SearchBar v-bind='{ searchYelpAPI, cancelPinFromMap, toggleSearchList, searchInputValue, updateSearchInputValue, isSearchLoading }' />
+    <SearchResults v-bind='{ searchInputValue, isSearchResultsOpen, searchResults, addPin }' />
   </div>
 </template>
 
 <script>
 import Modal from './components/Modal/Modal.vue'
 import Map from './components/Map/Map.vue'
+import SearchBar from './components/SearchBar/SearchBar.vue'
+import SearchResults from './components/SearchResults/SearchResults.vue'
 
 // Methods
 import { initMap, getLocation, centerMap } from './methods/map'
 import { initFirebase } from './methods/firebase-init'
-import {
-  createEvent,
-  toggleCreateEventModal,
-  toggleShareEventModal,
-  generateUUID,
-  fetchEvent,
-  updateEvent,
-  updateEventFromDB
-} from './methods/event'
-import { toggleModal } from './methods/modal'
+import { parseURL } from './methods/parseUrl'
+import { createEvent, generateUUID, fetchEvent, updateEvent, updateEventFromDB } from './methods/event'
+import { toggleModal, toggleCreateEventModal, toggleEventCreatedModal, toggleShareEventModal, toggleGetUsernameModal } from './methods/modal'
+import { setCookie, getCookie, eraseCookie, saveUsername, updateCookie } from './methods/cookies'
+import { searchYelpAPI, updateSearchInputValue } from './methods/yelp'
+import { saveMarkerInCreation, createPinFromMap, cancelPinFromMap, addPin, increaseScorePin, decreaseScorePin, setBestPin, deletePin, selectPin } from './methods/pin'
+import { toggleSearchList, checkIfOverLimitNumberPins } from './methods/helpers'
 
 export default {
   name: 'app',
   components: {
     Modal,
-    Map
+    Map,
+    SearchBar,
+    SearchResults
+  },
+  /*
+  * Call this before mount
+  */
+  beforeMount() {
+    // Parse l'URL actuelle
+    this.parseURL()
+  },
+
+  mounted() {
+    // Si lors de parseURL() on a récupéré l'ID de l'évènement
+    // et
+    // s'il n'y avait pas d'utilisateur stocké dans les cookies
+    // on propose à l'utilisateur de choisir son nom dans un modal
+    if (this.eventID && !this.currentUser) {
+      this.toggleGetUsernameModal()
+    }
+
+    // On initialise firebase (DB)
+    this.initFirebase()
+    // On initialise la map
+    this.initMap()
+
+
+    // Utile: quand on clique sur le background semi-opaque derrière le modal
+    // on ferme le modal
+    const self = this;
+    document.getElementById('modalBackground').addEventListener('click', function () {
+      self.toggleModal(false)
+    })
   },
   methods: {
-    /*
-    * Map part
-    */
+    parseURL,
+    
+    // Map
     initMap,
     getLocation,
     centerMap,
 
-    /*
-    * Firebase
-    */
+    // Firebase
     initFirebase,
 
-    /*
-    * Event
-    */
+    // Event
     createEvent,
-    toggleCreateEventModal,
-    toggleShareEventModal,
     generateUUID,
     fetchEvent,
     updateEvent,
     updateEventFromDB,
 
-    /*
-    * Modal
-    */
+    // Modal
     toggleModal,
+    toggleCreateEventModal,
+    toggleShareEventModal,
+    toggleEventCreatedModal,
+    toggleGetUsernameModal,
+
+    // Cookies
+    setCookie,
+    getCookie,
+    eraseCookie,
+    saveUsername,
+    updateCookie,
+
+    // Yelp
+    searchYelpAPI,
+    updateSearchInputValue,
+
+    // Pin
+    saveMarkerInCreation,
+    createPinFromMap,
+    cancelPinFromMap,
+    addPin,
+    increaseScorePin,
+    decreaseScorePin,
+    setBestPin,
+    deletePin,
+    selectPin,
+
+    // Helpers
+    toggleSearchList,
+    checkIfOverLimitNumberPins
   },
   data: () => ({
     /*
@@ -91,6 +146,11 @@ export default {
 
     // This is the value of the search input it is updated in realtime
     searchInputValue: '',
+    isSearchLoading: false,
+    // On stocke les résultats de la recherche ici
+    searchResults: false,
+    // Ouvre / ferme la liste si true / false
+    isSearchResultsOpen: false,
 
     // Ici on va stocker le nombre de pins créés
     // et c'est en utilisant cette valeur qu'on va déterminer si
@@ -107,18 +167,12 @@ export default {
     // Firebase Auth UI
     authUI: false,
 
-    // On stocke les résultats de la recherche ici
-    searchResults: false,
-
-    // Ouvre / ferme la liste si true / false
-    isSearchResultsOpen: false,
-
     // Nous permet de bypasser la limite de pins qd on fetch un event
     isUpdatingFromDB: false,
 
     pinsVoted: [],
 
-    modalContent: true,
+    modalContent: false,
     isShowingModalCloseButton: true
   }),
 };

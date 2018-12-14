@@ -1,23 +1,20 @@
 /*
 * Map
 */
-export const initMap = function(coordinates) {
+export const initMap = function (coordinates) {
   // If we have been able to get the coordinates of the user 
   // we center the map on his location
   if (coordinates) {
-    this.map = L.map('map').setView([coordinatess.latitude, coordinatess.longitude], 15)
+    this.map = window.L.map('map').setView([coordinates.latitude, coordinates.longitude], 15)
   } else {
-    this.map = L.map('map').setView([48.857938768171536, 2.3706436157226567]/*Souzy-en-bryche: [48.53, 2.14]*/, 13)
+    this.map = window.L.map('map').setView([48.857938768171536, 2.3706436157226567], 13)
   }
   
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', //'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
-  {
-    maxZoom: 19,
-    // id: 'mapbox.streets',
-    // accessToken: 'pk.eyJ1IjoiYmpsYWEiLCJhIjoiY2pubzRmYm1iMGI5czNycTFsYTJpZng5biJ9.hbgbuJ24OKVcx4xELavpoQ',
-    // styles: 'mapbox://styles/bjlaa/cjo7a5k5y1quq2snz10gxwkgu',
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-  }).addTo(this.map)
+  window.L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png',
+    {
+      maxZoom: 19,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+    }).addTo(this.map)
 
   // Add the mouse click event listener
   // Need to pass this inside a function === SCOPE ISSUE
@@ -25,8 +22,7 @@ export const initMap = function(coordinates) {
   const self = this
 
   
-  this.map.on('click', function(e) {
-
+  this.map.on('click', function (e) {
     // Return if a marker is already in creation
     if (self.markerInCreation) {
       self.cancelPinFromMap()
@@ -35,7 +31,7 @@ export const initMap = function(coordinates) {
     // Get the coordinates from Leaflet
     const latlng = self.map.mouseEventToLatLng(e.originalEvent)
 
-    self.saveMarkerInCreation({ coordinates: { latitude: latlng.lat, longitude: latlng.lng  } })
+    self.saveMarkerInCreation({ coordinates: { latitude: latlng.lat, longitude: latlng.lng } })
   })
 
   document.getElementById('map').addEventListener('click', () => {
@@ -44,7 +40,7 @@ export const initMap = function(coordinates) {
 }
 
 // Get current position - called by body.onload
-export const getLocation = function() {
+export const getLocation = function () {
   const self = this;
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
@@ -65,7 +61,7 @@ export const getLocation = function() {
       function (error) {
         console.log('ERROR in main.js - getLocation():', error)
         // If the map has not already been initialized go ahead and do it
-        if(!self.map) {
+        if (!self.map) {
           self.initMap()
         }
         self.isMissingLocation = true
@@ -76,13 +72,13 @@ export const getLocation = function() {
   }
 }
 
-export const centerMap = function(coords) {
+export const centerMap = function (coords) {
   // Centers on one point only
   if (coords) {
     this.map.setView([coords.latitude, coords.longitude], 15)
   } else {
     // Center on several points
-    var arrayOfLatLongsMarkers = []
+    const arrayOfLatLongsMarkers = []
     this.currentEvent.pins.forEach((pin) => {
       arrayOfLatLongsMarkers.push([pin.coordinates.latitude, pin.coordinates.longitude])
     })

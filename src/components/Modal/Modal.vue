@@ -5,7 +5,7 @@
     class="modalContainer"
   >
     <div
-      ref='modalBackground'
+      id='modalBackground'
       class="modalContainer__background"
     ></div>
     <div
@@ -42,8 +42,9 @@ export default {
   left: 0
   height: 100vh
   width: 100vw
-  z-index: 100
+  z-index: -100
   transition: opacity 0.5s ease-in-out
+  opacity 0
 
 .showModal
   z-index: 100

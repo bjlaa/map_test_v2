@@ -1,8 +1,9 @@
+import SETTINGS from '../settings'
 /*
 * Determines whether or not to show the landing
 * or to fetch the data
 */
-export const parseURL = function() {
+export const parseURL = function () {
   const currentURL = window.location.href
 
   const match = currentURL.match(/id=([^&]+)/)

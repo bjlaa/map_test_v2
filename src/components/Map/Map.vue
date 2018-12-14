@@ -10,10 +10,7 @@
 export default {
   name: 'Map',
   props: {
-    initMap: Function,
-  },
-  mounted: function() {
-    this.initMap()
+    
   }
 };
 </script>
