@@ -65,119 +65,111 @@ export default {
       self.toggleModal(false)
     })
   },
-  methods: {
-    parseURL,
+  props: {
+    parseURL: Function,
     
     // Map
-    initMap,
-    getLocation,
-    centerMap,
+    initMap: Function,
+    getLocation: Function,
+    centerMap: Function,
 
     // Firebase
-    initFirebase,
+    initFirebase: Function,
 
     // Event
-    createEvent,
-    generateUUID,
-    fetchEvent,
-    updateEvent,
-    updateEventFromDB,
+    createEvent: Function,
+    generateUUID: Function,
+    fetchEvent: Function,
+    updateEvent: Function,
+    updateEventFromDB: Function,
 
     // Modal
-    toggleModal,
-    toggleCreateEventModal,
-    toggleShareEventModal,
-    toggleEventCreatedModal,
-    toggleGetUsernameModal,
+    toggleModal: Function,
+    toggleCreateEventModal: Function,
+    toggleShareEventModal: Function,
+    toggleEventCreatedModal: Function,
+    toggleGetUsernameModal: Function,
 
     // Cookies
-    setCookie,
-    getCookie,
-    eraseCookie,
-    saveUsername,
-    updateCookie,
+    setCookie: Function,
+    getCookie: Function,
+    eraseCookie: Function,
+    saveUsername: Function,
+    updateCookie: Function,
 
     // Yelp
-    searchYelpAPI,
-    updateSearchInputValue,
+    searchYelpAPI: Function,
+    updateSearchInputValue: Function,
 
     // Pin
-    saveMarkerInCreation,
-    createPinFromMap,
-    cancelPinFromMap,
-    addPin,
-    increaseScorePin,
-    decreaseScorePin,
-    setBestPin,
-    deletePin,
-    selectPin,
+    saveMarkerInCreation: Function,
+    createPinFromMap: Function,
+    cancelPinFromMap: Function,
+    addPin: Function,
+    increaseScorePin: Function,
+    decreaseScorePin: Function,
+    setBestPin: Function,
+    deletePin: Function,
+    selectPin: Function,
 
     // Helpers
-    toggleSearchList,
-    checkIfOverLimitNumberPins
-  },
-  data: () => ({
+    toggleSearchList: Function,
+    checkIfOverLimitNumberPins: Function,
+
     /*
     * The state of the app:
     * 1 - there is no ID passed in the URL we launch the app in creation mode
     * 2 - there is an ID passed we hide the button create wigot as the event is
     * already stored in our DB
     */
-    appStates: {
-      wigotCreation: 1,
-      sharing: 2
-    },
+    appStates: Object,
     // Par défault on set l'app en mode creation
-    appState: 1,
+    appState: Number,
 
     /*
     * Everything relative to the event currently in progress must be stored in this
     * object. We will save this object in our database and fetch it when a user will
     * access https://wigot.com?id=ID_OF_MY_WIGOT
     */
-    currentEvent: {
-      title: '',
-      pins: [],
-      bestPin: false
-    },
+    currentEvent: Object,
 
-    markers: [],
+    markers: Array,
 
     // Ici on sauvegarde une référence vers la map
     // qui nous servira pour toutes les manipulations que l'on aura besoin de faire
-    map: false,
+    map: [Object, Boolean],
 
     // This is the value of the search input it is updated in realtime
-    searchInputValue: '',
-    isSearchLoading: false,
+    searchInputValue: String,
+    isSearchLoading: Boolean,
     // On stocke les résultats de la recherche ici
-    searchResults: false,
+    searchResults: [Boolean, Array],
     // Ouvre / ferme la liste si true / false
-    isSearchResultsOpen: false,
+    isSearchResultsOpen: Boolean,
 
     // Ici on va stocker le nombre de pins créés
     // et c'est en utilisant cette valeur qu'on va déterminer si
     // l'utilisateur a déjà créé le nombre de pins auquel il a le droit
-    pinsCreated: [],
+    pinsCreated: Array,
 
     // We'll use this variable to display a discreet modal inviting
     // the user to try and give his location again
-    isMissingLocation: false,
+    isMissingLocation: Boolean,
 
     // We'll store our DB in here
-    db: false,
+    db: [Boolean, Object],
 
     // Firebase Auth UI
-    authUI: false,
+    authUI: [Boolean, Object],
 
     // Nous permet de bypasser la limite de pins qd on fetch un event
-    isUpdatingFromDB: false,
+    isUpdatingFromDB: Boolean,
 
-    pinsVoted: [],
+    pinsVoted: Array,
 
-    modalContent: false,
-    isShowingModalCloseButton: true
-  }),
+    modalContent: [Boolean, Object],
+    isShowingModalCloseButton: Boolean
+  }
 };
 
 </script>

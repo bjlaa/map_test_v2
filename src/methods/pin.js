@@ -1,6 +1,5 @@
-import PinInfobox from '../components/PinInfobox/PinInfobox.vue'
-import PinCreationInfobox from '../components/PinCreationInfobox/PinCreationInfobox.vue'
-console.log('PinCreationInfobox', PinCreationInfobox)
+import PinInfobox from '../components/PinInfobox/PinInfobox.js'
+import PinCreationInfobox from '../components/PinCreationInfobox/PinCreationInfobox.js'
 
 // Utilisé par la map:
 // on créé et sauvegarde le pin dans this.markerInCreation
@@ -125,7 +124,6 @@ export const addPin = function (data, markerInCreation, index) {
   }
 
   // Bind new popup content and show it
-  console.log(PinInfobox)
   const newContent = PinInfobox;
   newMarker.bindPopup(newContent).openPopup();
 
