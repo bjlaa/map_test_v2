@@ -6,7 +6,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
+const vue = new Vue({
   // store,
   render: h => h(App)
 }).$mount('#app')
+
+window.vm = vue

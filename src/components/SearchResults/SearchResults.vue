@@ -3,13 +3,16 @@
     v-if="isSearchResultsOpen && searchInputValue !== '' && searchResults"
     class="searchResults"
   >
-    <ul class="searchList">
+    <ul
+      v-if='searchResults.length > 0'
+      class="searchList"
+    >
       <!-- On render seulement si il y a des résultats de recherche -->
       <li
-        v-if='searchResults.length > 0'
         v-for="item in searchResults"
         class="searchListItem"
         @click="addPin(item)"
+        v-bind:key='item.title'
       >
         <div class="searchListItemIcon">
           <img src="../../assets/markerIcon.png" alt="">

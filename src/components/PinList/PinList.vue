@@ -1,21 +1,42 @@
 <template>
   <div class="sideBarPinList">
-          <!-- S'il y a un best pin on l'affiche -->
-          <div
-            v-if="currentEvent.bestPin"
-            class="sideBarPinListItemBest"
-            @click="selectPin(currentEvent.bestPin.id)"
-          >
-            <div class="sideBarPinListItemBestTitle">Tonight we go to:</div>
-          <PinListItem />
+    <!-- S'il y a un best pin on l'affiche -->
+    <div
+      v-if="currentEvent.bestPin"
+      class="sideBarPinListItemBest"
+      @click="selectPin(currentEvent.bestPin.id)"
+    >
+      <div class="sideBarPinListItemBestTitle">Tonight we go to:</div>
+      <PinListItem
+        v-for='(pin, index) in currentEvent.pins'
+        :pin='pin'
+        :key='pin.title'
+        v-bind='{ currentEvent }'
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import PinListItem from './components/PinListItem/PinListItem.vue'
+import PinListItem from '../PinListItem/PinListItem.vue'
+
+export default {
+  name: 'PinList',
+  components: {
+    PinListItem
+  },
+  props: {
+    currentEvent: Object
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-
+.sideBarPinList {
+  background: #FAFAFA;
+  padding: 10px;
+  border-radius: 3px;
+  max-height: calc(100% - 220px);
+}
 </style>

@@ -25,7 +25,7 @@ export const toggleGetUsernameModal = function () {
 }
 
 export const showWelcomeMessage = function () {
-  toggleModal(true, WelcomeModal/*(this.currentEvent.title)*/)
+  toggleModal(true, WelcomeModal /* (this.currentEvent.title) */)
 
   const self = this
   setTimeout(() => {

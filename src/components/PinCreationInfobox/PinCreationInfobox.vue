@@ -42,7 +42,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'PinCreationInfoBox',
   props: {
     msg: String,
     createPinFromMap: Function,

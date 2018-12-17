@@ -4,6 +4,7 @@
     <Map v-bind="{ initMap }"/>
     <SearchBar v-bind='{ searchYelpAPI, cancelPinFromMap, toggleSearchList, searchInputValue, updateSearchInputValue, isSearchLoading }' />
     <SearchResults v-bind='{ searchInputValue, isSearchResultsOpen, searchResults, addPin }' />
+    <SideBar v-bind='{ currentEvent }'/>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import Modal from './components/Modal/Modal.vue'
 import Map from './components/Map/Map.vue'
 import SearchBar from './components/SearchBar/SearchBar.vue'
 import SearchResults from './components/SearchResults/SearchResults.vue'
+import SideBar from './components/SideBar/SideBar.vue'
 
 // Methods
 import { initMap, getLocation, centerMap } from './methods/map'
@@ -30,7 +32,8 @@ export default {
     Modal,
     Map,
     SearchBar,
-    SearchResults
+    SearchResults,
+    SideBar
   },
   /*
   * Call this before mount

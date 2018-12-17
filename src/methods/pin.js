@@ -1,4 +1,6 @@
 import PinInfobox from '../components/PinInfobox/PinInfobox.vue'
+import PinCreationInfobox from '../components/PinCreationInfobox/PinCreationInfobox.vue'
+console.log('PinCreationInfobox', PinCreationInfobox)
 
 // Utilisé par la map:
 // on créé et sauvegarde le pin dans this.markerInCreation
@@ -14,7 +16,9 @@ export const saveMarkerInCreation = function (data) {
   var popupCreation = new L.popup({
     closeButton: false
   })
-  .setContent(pinCreationInfoBoxComponent)
+  .setContent(PinCreationInfobox)
+
+  console.log(popupCreation)
 
   newMarker.bindPopup(popupCreation).openPopup();
 
