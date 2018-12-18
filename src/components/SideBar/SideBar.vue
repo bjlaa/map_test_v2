@@ -1,31 +1,40 @@
 <template>
   <aside class="sideBar card">
-        <div class="sideBarLogo">
-          <img class="sideBarLogoImage" src="../../assets/Wigot_Logo.png">
-        </div>
-        <div v-if="currentEvent.title" class="sideBarHeader">
-          <div class="sideBarHeaderTitle">
-            {{ currentEvent.title }}
-          </div>
-          <div v-if="currentEvent.author" class="sideBarHeaderAuthor">
-            Created by {{ currentEvent.author }}
-          </div>
-        </div>
-        <PinList v-bind='{ currentEvent }' />
+    <div class="sideBarLogo">
+      <img class="sideBarLogoImage" src="../../assets/Wigot_Logo.png">
+    </div>
+    <div v-if="currentEvent.title" class="sideBarHeader">
+      <div class="sideBarHeaderTitle">
+        {{ currentEvent.title }}
+      </div>
+      <div v-if="currentEvent.author" class="sideBarHeaderAuthor">
+        Created by {{ currentEvent.author }}
+      </div>
+    </div>
+    <PinList v-bind='{ currentEvent, increaseScorePin, deletePin, selectPin }' />
+    <SideBarBottom v-bind='{ appStates, appState, currentEvent, toggleCreateEventModal, toggleShareEventModal }' />
   </aside>
-
 </template>
 
 <script>
 import PinList from '../PinList/PinList.vue'
+import SideBarBottom from '../SideBarBottom/SideBarBottom.vue'
 
 export default {
   name: 'SideBar',
   components: {
-    PinList
+    PinList,
+    SideBarBottom
   },
   props: {
-    currentEvent: Object
+    currentEvent: Object,
+    increaseScorePin: Function,
+    deletePin: Function,
+    selectPin: Function,
+    appStates: Object,
+    appState: Number,
+    toggleCreateEventModal: Function,
+    toggleShareEventModal: Function,
   }
 };
 </script>

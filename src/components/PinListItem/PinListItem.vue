@@ -1,27 +1,37 @@
 <template>
-  <div class="sideBarPinListItem">
-    <div class="sideBarPinListItemIcon">
+  <div
+    v-bind:class='{ pinListItemBestPin: (pin === currentEvent.bestPin) }'
+    class="pinListItem"
+    @click='selectPin(pin.id)'
+  >
+    <div class="pinListItemIcon">
       <img
-        class="sideBarPinListItemIconImage"
+        v-bind:class='{ pinListItemIconImage__show: (pin.id === currentEvent.bestPin.id) }'
+        class="pinListItemIconImage"
         src="../../assets/beers.png"
+      >
+      <img
+        v-bind:class='{ pinListItemIconImage__show: (pin.id !== currentEvent.bestPin.id) }'
+        class="pinListItemIconImage"
+        src="../../assets/markerIcon.png"
       >
     </div>
     <div class="sideBarNameAuthor">
-      <div class="sideBarPinListItemName">{{ currentEvent.bestPin.name }}</div>
-      <div v-if='currentEvent.bestPin.author' class="sideBarPinListItemAuthor">suggested by {{ currentEvent.bestPin.author }}</div>                
+      <div class="pinListItemName">{{ pin.name }}</div>
+      <div v-if='currentEvent.bestPin.author' class="sideBarPinListItemAuthor">suggested by {{ pin.author }}</div>                
     </div>
     <button
       @click="increaseScorePin(0)"
-      class="sideBarPinListItemLikeButton"
+      class="pinListItemLikeButton"
     >
       <i class="fas fa-heart"></i>
       <span
-        v-show="currentEvent.pins[0].score > 0"
-      >{{ currentEvent.bestPin.score ? currentEvent.bestPin.score : null}}</span>
+        v-show="pin.score > 0"
+      >{{ pin.score ? pin.score : null}}</span>
     </button>
     <button
       @click="deletePin(index)"
-      class="sideBarPinListItemDeleteButton"
+      class="pinListItemDeleteButton"
     >
       <i class="fas fa-times"></i>
     </button>
@@ -102,85 +112,95 @@
 export default {
   name: 'PinListItem',
   props: {
-    currentEvent: Object
+    currentEvent: Object,
+    pin: Object,
+    increaseScorePin: Function,
+    deletePin: Function,
+    index: Number,
+    selectPin: Function
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-.sideBarPinListItem {
+.pinListItem {
   display: flex;
   padding: 10px 5px;
   border-bottom: solid 1px lightgrey;
   transition: background 0.2s ease-in-out;
   cursor: pointer;
 }
-.sideBarPinListItem:hover {
+.pinListItem:hover {
   background: #F2F2F2;
   border-radius: 3px;
 }
-.sideBarPinListItemIcon {
-  width: 25px;
-  margin-right: 10px;
-}
-.sideBarPinListItemName {
+.pinListItemIcon 
+  width: 25px
+  margin-right: 10px
+
+.pinListItemIconImage
+  display: none
+  &__show
+    display: block
+
+.pinListItemName {
   color: #444;
 }
-.sideBarPinListItemAuthor {
+.pinListItemAuthor {
   font-size: 8pt;
   color: grey;
 }
-.sideBarPinListItemLikeButton {
+.pinListItemLikeButton {
   border: none;
   color: #00C5FA;
   background: rgba(0,0,0,0);
   margin-left: auto;
 }
-.sideBarPinListItemDeleteButton {
+.pinListItemDeleteButton {
   color: lightgrey;
   background: rgba(0,0,0,0);
   border: none;
   transition: color 0.2s ease-in-out;
 }
-.sideBarPinListItemDeleteButton:hover {
+.pinListItemDeleteButton:hover {
   color: grey;
 }
 
-.sideBarPinListItemBest {
+.pinListItemBest {
   background: #69d18b;
   border-radius: 3px;
   color: white;
   padding-top: 5px;
   transition: background 0.2s ease-in-out;
 }
-.sideBarPinListItemBest:hover {
+.pinListItemBest:hover {
   background: #5ebc7d;
 }
-.sideBarPinListItemBest .sideBarPinListItem:hover {
+.pinListItemBest .pinListItem:hover {
   background: none;
 }
-.sideBarPinListItemBestTitle {
+.pinListItemBestTitle {
   margin-left: 10px;
   font-size: 8pt;
 }
-.sideBarPinListItemBest .sideBarPinListItem {
+.pinListItemBest .pinListItem {
   border-bottom: none;
 }
-.sideBarPinListItemBest .sideBarPinListItemName {
+.pinListItemBest .pinListItemName {
   color: white;
   font-size: 12pt;
   display: flex;
   align-items: center;
 }
-.sideBarPinListItemBest .sideBarPinListItemLikeButton {
+.pinListItemBest .pinListItemLikeButton {
   color: white;
 } 
-.sideBarPinListItemBest .sideBarPinListItemIcon {
+.pinListItemBest .pinListItemIcon {
   width: 50px;
   margin-top: -15px;
 }
-.sideBarPinListItemBest .sideBarPinListItemName {
+.pinListItemBest .pinListItemName {
   font-size: 15pt;
 }
 </style>

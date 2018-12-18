@@ -17,8 +17,6 @@ export const saveMarkerInCreation = function (data) {
   })
   .setContent(PinCreationInfobox)
 
-  console.log(popupCreation)
-
   newMarker.bindPopup(popupCreation).openPopup();
 
   this.markerInCreation = newMarker;
@@ -242,37 +240,37 @@ export const setBestPin = function () {
 // Delete pin both in global state and on the map
 export const deletePin = function (index) {
   // Delete map Marker
-  this.map.removeLayer(this.markers[index]);
+  this.map.removeLayer(this.markers[index])
 
   // Delete reference id saved in this.pinsCreated
-  var pinToDelete = this.currentEvent.pins[index];
-  var indexToDelete = this.pinsCreated.indexOf(pinToDelete.id);
-  this.pinsCreated.splice(indexToDelete, 1);
+  var pinToDelete = this.currentEvent.pins[index]
+  var indexToDelete = this.pinsCreated.indexOf(pinToDelete.id)
+  this.pinsCreated.splice(indexToDelete, 1)
 
   // Delete pin in event object
-  this.currentEvent.pins.splice(index, 1);
-  this.markers.splice(index, 1);
+  this.currentEvent.pins.splice(index, 1)
+  this.markers.splice(index, 1)
 
 
-  this.setBestPin();
+  this.setBestPin()
 
   if (this.appState === this.appStates.sharing) {
-    this.updateEvent();
-    this.updateCookie();
+    this.updateEvent()
+    this.updateCookie()
   }
 }
 
 export const selectPin = function (pinId) {
-  var selectedPin = this.currentEvent.pins.filter(pin => pin.id === pinId)[0];
+  var selectedPin = this.currentEvent.pins.filter(pin => pin.id === pinId)[0]
 
   if (selectedPin) {
-    this.selectedPin = selectedPin;
+    this.selectedPin = selectedPin
   }
 
-  var selectedMarker = this.markers.filter(marker => marker._leaflet_id === pinId)[0];
+  var selectedMarker = this.markers.filter(marker => marker._leaflet_id === pinId)[0]
 
   if (selectedMarker) {
-    selectedMarker.openPopup();
-    this.centerMap({ latitude: selectedMarker.coordinates.latitude, longitude: selectedMarker.coordinates.longitude });
+    selectedMarker.openPopup()
+    this.centerMap({ latitude: selectedMarker._latlng.lat, longitude: selectedMarker._latlng.lng })
   }
 }

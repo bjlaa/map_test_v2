@@ -18,7 +18,7 @@
       >
           <i class="fas fa-times"></i>
       </button>
-      {{ modalContent }}
+      <div id="modalContent"></div>
     </div>
   </div>
 </template>

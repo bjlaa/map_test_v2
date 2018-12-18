@@ -4,7 +4,7 @@
     <Map v-bind="{ initMap }"/>
     <SearchBar v-bind='{ searchYelpAPI, cancelPinFromMap, toggleSearchList, searchInputValue, updateSearchInputValue, isSearchLoading }' />
     <SearchResults v-bind='{ searchInputValue, isSearchResultsOpen, searchResults, addPin }' />
-    <SideBar v-bind='{ currentEvent }'/>
+    <SideBar v-bind='{ currentEvent, increaseScorePin, deletePin, selectPin, appStates, appState, toggleShareEventModal, toggleCreateEventModal }'/>
   </div>
 </template>
 
@@ -174,6 +174,8 @@ export default {
 
 </script>
 <style lang="stylus">
+img
+    max-width 100%
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
