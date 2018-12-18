@@ -42,7 +42,7 @@ export const createEvent = function (eventAuthor, eventName) {
 
       // We show the event created modal giving the author of the event the 
       // URL to share to his friends
-      self.toggleModal(true, eventCreatedComponent(newEventId))
+      this.toggleEventCreatedModal(newEventId)
 
       this.appState = this.appStates.sharing
     })
@@ -52,13 +52,13 @@ export const createEvent = function (eventAuthor, eventName) {
 }
 
 export const toggleShareEventModal = function (eventId) {
-  this.toggleModal(true, shareEventComponent(eventId))
+  this.toggleEventCreatedModal()
 }
 
 // Generate ID
 // from: https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 export const generateUUID = function () { // Public Domain/MIT
-  const d = Date.now()
+  let d = Date.now()
   if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
     d += performance.now() // use high-precision timer if available
   }

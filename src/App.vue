@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Modal v-bind="{ modalContent, toggleModal, isShowingModalCloseButton }" />
+    <Modal v-bind="{ modalContent, toggleModal, isShowingModalCloseButton, currentEvent }" />
     <Map v-bind="{ initMap }"/>
     <SearchBar v-bind='{ searchYelpAPI, cancelPinFromMap, toggleSearchList, searchInputValue, updateSearchInputValue, isSearchLoading }' />
     <SearchResults v-bind='{ searchInputValue, isSearchResultsOpen, searchResults, addPin }' />

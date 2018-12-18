@@ -18,6 +18,7 @@
       >
           <i class="fas fa-times"></i>
       </button>
+      <component :is='childComponent'></component>
       <div id="modalContent"></div>
     </div>
   </div>
@@ -29,7 +30,13 @@ export default {
   props: {
     modalContent: [Object, Boolean],
     toggleModal: Function,
-    isShowingModalCloseButton: Boolean
+    isShowingModalCloseButton: Boolean,
+    currentEvent: Object
+  },
+  computed: {
+    childComponent: function() {
+      return this.modalContent
+    } 
   }
 };
 </script>

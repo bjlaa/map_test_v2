@@ -1,4 +1,4 @@
-import CreateEventModal from '../components/CreateEventModal/CreateEventModal.js'
+import CreateEventModal from '../components/CreateEventModal/CreateEventModal.vue'
 import EventCreatedModal from '../components/EventCreatedModal/EventCreatedModal.vue'
 import ShareEventModal from '../components/ShareEventModal/ShareEventModal.vue'
 import GetUsernameModal from '../components/GetUsernameModal/GetUsernameModal.vue'
@@ -12,17 +12,11 @@ function htmlToElement(html) {
 }
 
 export const toggleModal = function (value) {
-  if (value) {
-    document.getElementById('modalContent').innerHTML = value
-  } else {
-    document.getElementById('modalContent').innerHTML = null
-  }
-
   this.modalContent = value
 }
 
 export const toggleCreateEventModal = function () {
-  this.toggleModal(htmlToElement(CreateEventModal))
+  this.toggleModal(CreateEventModal)
 }
 
 export const toggleEventCreatedModal = function () {

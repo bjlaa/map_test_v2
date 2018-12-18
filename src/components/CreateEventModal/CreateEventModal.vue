@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="createEvent" class="createEvent">
+  <form v-on:submit.prevent="handleCreateEvent" class="createEvent">
     <h4 class="handleCreateEvent">Just one more step to create your Wigot...</h4>
     <h5 class="createEventNameTitle">Set your name:</h5>
     <input
@@ -17,7 +17,7 @@
       type="text"
       ref="eventName"
     >
-    <button type="button" class="buttonCancel btn btn-light" onclick="vm.toggleModal(false)">Cancel</button>
+    <button type="button" class="buttonCancel btn btn-light" @click="vm.toggleModal(false)">Cancel</button>
     <button class="buttonCreate btn btn-primary">Create event</button>
   </form>
 </template>
@@ -26,16 +26,13 @@
 export default {
   name: 'CreateEventModal',
   props: {
-    msg: String,
-    createEvent: Function
   },
   methods: {
     handleCreateEvent() {
-      console.log(this)
       const eventAuthor = this.$refs.eventAuthor.value
       const eventName = this.$refs.eventName.value
 
-      this.createEvent(eventAuthor, eventName)
+      vm.createEvent(eventAuthor, eventName)
     }
   }
 };

@@ -7,7 +7,7 @@
         class="copyURLInput form-control"
         id="inputEventURL"
         type="text"
-        value=`${SETTINGS.shareURL}${eventId}`
+        v-bind:value='SETTINGS.shareURL + eventID'
         ref="link"
       />
       <button
@@ -21,11 +21,12 @@
 </template>
 
 <script>
+import SETTINGS from '../../settings'
+
 export default {
-  name: 'HelloWorld',
+  name: 'EventCreatedModal',
   props: {
-    msg: String,
-    eventId: String
+    msg: String
   },
   methods: {
     copyEventURL() {
@@ -40,6 +41,12 @@ export default {
 
       document.getElementById('buttoninputEventURL').style.background = 'orange'
       document.getElementById('buttoninputEventURL').innerHTML = 'Wigot ready to be shared'
+    }
+  },
+  data: function() {
+    return {
+      SETTINGS: SETTINGS,
+      eventID: vm.currentEvent.id
     }
   }
 };

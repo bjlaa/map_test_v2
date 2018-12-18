@@ -1,30 +1,57 @@
-const PinInfoBox = (pin) => `
-  <div class="pinPopup">
-    <div v-if="${pin.image}" class="image">
-      <img :src="${pin.image}" alt="" />
+const PinInfoBox = function(pin, index) {
+  const pinRating = `
+    <div class="rating">
+      ${pin.rating} <i class="fas fa-star"></i>
     </div>
-    <div class="name">
-      {{ pin.name }}
+  `
+  const pinPrice = `
+    <div class="price">
+      ${pin.price}
     </div>
-    <div class="address">
-      {{ pin.address }}
+  `
+
+  const printCategories = (categories) => {
+    const categoriesNode = categories.map((cat, index) => {
+      return `
+        <span>${cat.title}</span>
+      `
+    })
+
+    return categoriesNode;
+  }
+
+  const pinCategories = `
+    <div class="categories">
+      ${pin.categories ? printCategories(pin.categories) : ''}
     </div>
-    <div v-if="pin.rating" class="rating">
-      {{ pin.rating }} <i class="fas fa-star"></i>
+  `
+
+  const pinImage = `
+    <div class="image">
+      <img src="${pin.image}" alt="" />
     </div>
-    <div v-if="pin.price" class="price">
-      {{ pin.price }}
+  `
+
+  return `
+    <div class="pinPopup">
+      ${pin.image ? pinImage : ''}
+      <div class="name">
+        ${pin.name}
+      </div>
+      <div class="address">
+        ${pin.address}
+      </div>
+      ${pin.rating ? pinRating : ''}
+      ${pin.price ? pinPrice : ''}
+      ${pin.categories ? pinCategories : ''}
+      <button
+        class="pinPopupCreateButton btn btn-primary"
+        onclick="vm.increaseScorePin(${index})"
+      >
+        Vote
+      </button>
     </div>
-    <div v-if="pin.categories" class="categories">
-      <span v-for='(cat, index) in pin.categories'>{{ cat.title }}</span>
-    </div>
-    <button
-      class="pinPopupCreateButton btn btn-primary"
-      onclick="vm.handleIncreaseScore"
-    >
-      Vote
-    </button>
-  </div>
-`
+  `
+}
 
 export default PinInfoBox

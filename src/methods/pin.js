@@ -1,5 +1,7 @@
 import PinInfobox from '../components/PinInfobox/PinInfobox.js'
 import PinCreationInfobox from '../components/PinCreationInfobox/PinCreationInfobox.js'
+import icon from '../assets/markerIcon.png'
+import shadowIcon from '../assets/marker-shadow.png'
 
 // Utilisé par la map:
 // on créé et sauvegarde le pin dans this.markerInCreation
@@ -10,7 +12,17 @@ export const saveMarkerInCreation = function (data) {
   var lat = data.coordinates.latitude.toString();
   var lng = data.coordinates.longitude.toString();
 
-  var newMarker = new L.marker([lat, lng], { riseOnHover: true }).addTo(this.map);
+  var myIcon = L.icon({
+      iconUrl: icon,
+      iconSize: [40, 40],
+      iconAnchor: [21, 75],
+      popupAnchor: [-3, -76],
+      shadowUrl: shadowIcon,
+      shadowSize: [40, 60],
+      shadowAnchor: [15, 94] 
+  });
+
+  var newMarker = new L.marker([lat, lng], { riseOnHover: true, icon: myIcon }).addTo(this.map);
 
   var popupCreation = new L.popup({
     closeButton: false
@@ -52,11 +64,11 @@ export const addPin = function (data, markerInCreation, index) {
     lng = data.coordinates.longitude.toString();
 
     var myIcon = L.icon({
-        iconUrl: './assets/markerIcon.png',
+        iconUrl: icon,
         iconSize: [40, 40],
         iconAnchor: [21, 75],
         popupAnchor: [-3, -76],
-        shadowUrl: './assets/marker-shadow.png',
+        shadowUrl: shadowIcon,
         shadowSize: [40, 60],
         shadowAnchor: [15, 94] 
     });
@@ -122,7 +134,7 @@ export const addPin = function (data, markerInCreation, index) {
   }
 
   // Bind new popup content and show it
-  const newContent = PinInfobox;
+  const newContent = PinInfobox(newPin, index ? index : this.currentEvent.pins.length);
   newMarker.bindPopup(newContent).openPopup();
 
   var self = this;
@@ -165,6 +177,7 @@ export const addPin = function (data, markerInCreation, index) {
 
 // Vote pour un pin
 export const increaseScorePin = function (index) {
+  console.log('index',index)
   if (this.pinsVoted.indexOf(this.currentEvent.pins[index].id) > -1) {
     return;
   }

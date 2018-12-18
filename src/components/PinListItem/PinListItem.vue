@@ -21,7 +21,7 @@
       <div v-if='currentEvent.bestPin.author' class="sideBarPinListItemAuthor">suggested by {{ pin.author }}</div>                
     </div>
     <button
-      @click="increaseScorePin(0)"
+      @click="increaseScorePin(index)"
       class="pinListItemLikeButton"
     >
       <i class="fas fa-heart"></i>
