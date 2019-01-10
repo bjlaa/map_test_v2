@@ -1,3 +1,4 @@
+import SETTINGS from '../settings'
 /*
 * Cookies
 */

@@ -17,17 +17,17 @@
 </template>
 
 <script>
+import { showWelcomeMessage } from '../../methods/modal'
 export default {
   name: 'GetUsernameModal',
   props: {
     msg: String,
-    saveUsername: Function,
-    showWelcomeMessage: Function
+    saveUsername: Function
   },
   methods: {
     handleSaveUsername() {
-      this.saveUsername()
-      this.showWelcomeMessage()
+      this.$root.saveUsername()
+      showWelcomeMessage()
     }
   }
 };

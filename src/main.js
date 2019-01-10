@@ -17,7 +17,7 @@ import { toggleSearchList, checkIfOverLimitNumberPins } from './methods/helpers'
 
 Vue.config.productionTip = false
 
-const vue = new Vue({
+window.vm = new Vue({
   // store,
   methods: {
     parseURL,
@@ -241,4 +241,3 @@ const vue = new Vue({
   }
 }).$mount('#app')
 
-window.vm = vue

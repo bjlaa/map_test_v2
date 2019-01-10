@@ -1,7 +1,7 @@
 <template>
   <aside class="sideBar card">
     <div class="sideBarLogo">
-      <img class="sideBarLogoImage" src="../../assets/Wigot_Logo.png">
+      <img class="sideBarLogoImage" src="../../assets/images/Wigot_Logo.png">
     </div>
     <div v-if="currentEvent.title" class="sideBarHeader">
       <div class="sideBarHeaderTitle">

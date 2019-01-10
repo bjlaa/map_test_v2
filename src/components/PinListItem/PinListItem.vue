@@ -8,12 +8,12 @@
       <img
         v-bind:class='{ pinListItemIconImage__show: (pin.id === currentEvent.bestPin.id) }'
         class="pinListItemIconImage"
-        src="../../assets/beers.png"
+        src="../../assets/images/beers.png"
       >
       <img
         v-bind:class='{ pinListItemIconImage__show: (pin.id !== currentEvent.bestPin.id) }'
         class="pinListItemIconImage"
-        src="../../assets/markerIcon.png"
+        src="../../assets/images/markerIcon.png"
       >
     </div>
     <div class="sideBarNameAuthor">

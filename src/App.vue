@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import LandingPage from './components/LandingPage/LandingPage.vue'
 import Modal from './components/Modal/Modal.vue'
 import Map from './components/Map/Map.vue'
 import SearchBar from './components/SearchBar/SearchBar.vue'
@@ -29,6 +30,7 @@ import { toggleSearchList, checkIfOverLimitNumberPins } from './methods/helpers'
 export default {
   name: 'app',
   components: {
+    LandingPage,
     Modal,
     Map,
     SearchBar,
@@ -48,7 +50,8 @@ export default {
     // et
     // s'il n'y avait pas d'utilisateur stocké dans les cookies
     // on propose à l'utilisateur de choisir son nom dans un modal
-    if (this.eventID && !this.currentUser) {
+    console.log(this)
+    if (this.$root && this.$root.eventID && !this.$root.currentUser) {
       this.toggleGetUsernameModal()
     }
 

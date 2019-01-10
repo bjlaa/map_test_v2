@@ -12,7 +12,7 @@ function htmlToElement(html) {
 }
 
 export const toggleModal = function (value) {
-  this.modalContent = value
+  this.$root.modalContent = value
 }
 
 export const toggleCreateEventModal = function () {

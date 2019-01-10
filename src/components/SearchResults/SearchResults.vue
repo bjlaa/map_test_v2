@@ -15,7 +15,7 @@
         v-bind:key='item.title'
       >
         <div class="searchListItemIcon">
-          <img src="../../assets/markerIcon.png" alt="">
+          <img src="../../assets/images/markerIcon.png" alt="">
         </div>
         <div class="searchListItemText">
           <div class="searchListItemTextName">

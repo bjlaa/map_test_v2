@@ -1,7 +1,7 @@
 import PinInfobox from '../components/PinInfobox/PinInfobox.js'
 import PinCreationInfobox from '../components/PinCreationInfobox/PinCreationInfobox.js'
-import icon from '../assets/markerIcon.png'
-import shadowIcon from '../assets/marker-shadow.png'
+import icon from '../assets/images/markerIcon.png'
+import shadowIcon from '../assets/images/marker-shadow.png'
 
 // Utilisé par la map:
 // on créé et sauvegarde le pin dans this.markerInCreation
