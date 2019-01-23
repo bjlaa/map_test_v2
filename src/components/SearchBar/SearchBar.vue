@@ -83,6 +83,7 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
   height: 40px;
+  font-size: 12pt;
 }
 .searchBarResultsOpen {
   border-radius: 5px 0px 0px 5px;
@@ -95,7 +96,7 @@ export default {
 .searchInput {
   border-radius: 5px 0px 0px 5px!important;
   height: 100%;
-  font-size: 12pt;
+  font-size: 11pt;
 }
 .form-control:focus {
   border-color: #00C5FA!important;

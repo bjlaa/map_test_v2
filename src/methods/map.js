@@ -13,7 +13,7 @@ export const initMap = function (coordinates) {
   window.L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png',
     {
       maxZoom: 19,
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+      // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
     }).addTo(this.map)
 
   // Add the mouse click event listener
@@ -59,7 +59,7 @@ export const getLocation = function () {
       },
       // error callback: the user refused to give his location
       function (error) {
-        console.log('ERROR in main.js - getLocation():', error)
+        console.log('ERROR in map.js - getLocation():', error)
         // If the map has not already been initialized go ahead and do it
         if (!self.map) {
           self.initMap()

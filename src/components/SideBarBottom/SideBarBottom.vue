@@ -2,21 +2,21 @@
   <div class="sideBarBottom">
     <div
       v-if="appState === appStates.wigotCreation && currentEvent.pins && currentEvent.pins.length === 0"
-      class="createWigotTextAddPin"
+      class="sideBarBottom__textAddPin"
     >
       Add a pin by using the search bar or by clicking on the map.
     </div>
 
     <div
       v-if="appState === appStates.wigotCreation && currentEvent.pins && currentEvent.pins.length > 0"
-      class="createWigot"
+      class="sideBarBottom__createWigot"
     >
       <div class="createWigotText">
         Everything set up? Create your Wigot to start sharing it.
       </div>
       <button
         @click="toggleCreateEventModal"
-        class="createWigotButton"
+        class="sideBarBottom__createWigot__button"
       >
         Create Wigot
       </button>
@@ -24,14 +24,14 @@
 
     <div
       v-if="appState === appStates.sharing"
-      class="createWigot"
+      class="sideBarBottom__createWigot"
     >
       <div class="createWigotText">
         Share this Wigot to your friends / family.
       </div>
       <button
         @click="toggleShareEventModal(currentEvent.id);"
-        class="createWigotButton"
+        class="sideBarBottom__createWigot__button"
       >
         Share Wigot
       </button>
@@ -55,24 +55,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-.createWigot {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  padding: 0px 20px;
-  width: 100%;
-  text-align: center;
-}
-.createWigotButton {
-  margin: 20px auto;
-  display: block;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 50px;
-  background: #00C5FA;
-  border: none;
-}
-.createWigotTextAddPin {
-  margin-bottom: 20px;
+.sideBarBottom {
+  &__textAddPin {
+    margin-bottom: 20px;
+    font-size: 10pt;
+  }
+  &__createWigot {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding: 0px 20px;
+    width: 100%;
+    text-align: center;
+    &__button {
+      margin: 20px auto;
+      display: block;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      background: #00C5FA;
+      border: none;
+    }
+  }
 }
 </style>

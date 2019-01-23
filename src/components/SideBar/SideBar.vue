@@ -42,11 +42,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 .wigotTitle {
-    text-align: center;
+  text-align: center;
 }
 .bestLoc {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
+  font-weight: bold;
 }
 .sideBar {
   position: fixed;
@@ -80,18 +80,5 @@ export default {
 .sideBarHeaderAuthor {
   font-size: 8pt;
   color: grey;
-}
-
-
-.card {
-  /*
-    Material design box-shadow (card 2): https://codepen.io/sdthornton/pen/wBZdXq
-    c'est les normes design de google reconnues et utilisées 
-    >> un peu moins marquée que celle que tu avais utilisée avant
-  */
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  /*box-shadow: 0rem .5rem 1rem rgba(0,0,0,.3);*/
-  border-radius: 0.8rem;
-  /* padding: 2px 16px 2px 16px;*/
 }
 </style>

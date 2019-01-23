@@ -1,5 +1,4 @@
 import SETTINGS from '../settings'
-import { toggleGetUsernameModal } from './modal'
 /*
 * Determines whether or not to show the landing
 * or to fetch the data
@@ -9,13 +8,11 @@ export const parseURL = function () {
 
   const match = currentURL.match(/id=([^&]+)/)
 
-  const self = this
   if (match) {
     // Switch to share mode: le mec a partagé son event
     this.appState = this.appStates.sharing
 
     // Store the ID in the state
-    console.log('in parseURL, this ==', this)
     this.eventID = match[1]
     const cookie = this.getCookie(`${SETTINGS.cookieNameFirstPart}${this.eventID}`)
 

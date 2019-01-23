@@ -18,6 +18,7 @@
 
 <script>
 import { showWelcomeMessage } from '../../methods/modal'
+
 export default {
   name: 'GetUsernameModal',
   props: {

@@ -42,7 +42,7 @@ export default {
   */
   beforeMount() {
     // Parse l'URL actuelle
-    this.parseURL()
+    this.parseURL();
   },
 
   mounted() {
@@ -185,4 +185,30 @@ img
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+/*
+* List
+*/
+ul {
+  list-style-type: none;
+  background-color: #FFFFFF;
+}
+li {
+  border-top: 1px solid #ddd;
+  padding: 5px;
+}
+
+.card {
+  /*
+    Material design box-shadow (card 2): https://codepen.io/sdthornton/pen/wBZdXq
+    c'est les normes design de google reconnues et utilisées 
+    >> un peu moins marquée que celle que tu avais utilisée avant
+  */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  /*box-shadow: 0rem .5rem 1rem rgba(0,0,0,.3);*/
+  border-radius: 0.8rem;
+  /* padding: 2px 16px 2px 16px;*/
+}
 </style>

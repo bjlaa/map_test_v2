@@ -42,40 +42,4 @@ export default {
   border-radius: 3px;
   max-height: calc(100% - 220px);
 }
-.pinListItemBest {
-  background: #69d18b;
-  border-radius: 3px;
-  color: white;
-  padding-top: 5px;
-  transition: background 0.2s ease-in-out;
-}
-.pinListItemBest:hover {
-  background: #5ebc7d;
-}
-.pinListItemBest .pinListItem:hover {
-  background: none;
-}
-.pinListItemBestTitle {
-  margin-left: 10px;
-  font-size: 8pt;
-}
-.pinListItemBest .pinListItem {
-  border-bottom: none;
-}
-.pinListItemBest .pinListItemName {
-  color: white;
-  font-size: 12pt;
-  display: flex;
-  align-items: center;
-}
-.pinListItemBest .pinListItemLikeButton {
-  color: white;
-} 
-.pinListItemBest .pinListItemIcon {
-  width: 50px;
-  margin-top: -15px;
-}
-.pinListItemBest .pinListItemName {
-  font-size: 15pt;
-}
 </style>

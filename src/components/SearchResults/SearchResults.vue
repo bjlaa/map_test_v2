@@ -5,23 +5,27 @@
   >
     <ul
       v-if='searchResults.length > 0'
-      class="searchList"
+      class="searchResults__list"
     >
       <!-- On render seulement si il y a des résultats de recherche -->
       <li
         v-for="item in searchResults"
-        class="searchListItem"
+        class="searchResults__list__item"
         @click="addPin(item)"
         v-bind:key='item.title'
       >
-        <div class="searchListItemIcon">
-          <img src="../../assets/images/markerIcon.png" alt="">
+        <div class="searchResults__list__item__icon">
+          <img
+            class="searchResults__list__item__icon__img"
+            src="../../assets/images/markerIcon.png"
+            alt=""
+          >
         </div>
-        <div class="searchListItemText">
-          <div class="searchListItemTextName">
+        <div class="searchResults__list__item__text">
+          <div class="searchResults__list__item__text__name">
             {{ item.name }}
           </div>
-          <div class="searchListItemTextAddress">
+          <div class="searchResults__list__item__text__address">
             {{ item.location && item.location.address1 }}, {{ item.location && item.location.zip_code }} {{ item.location && item.location.city }}
           </div>
         </div>
@@ -29,9 +33,9 @@
       <!-- Si pas de résultats on render: -->
       <li
         v-if='searchResults.length <= 0'
-        class="searchListItem"
+        class="searchResults__list__item"
       >
-        <div class="searchListItemText">
+        <div class="searchResults__list__item__text">
           No result found
         </div>
       </li>
@@ -64,47 +68,43 @@ export default {
   margin-left: 22px;
   margin-top: 5px;
   border: solid 1px lightgrey;
-}
-.searchList {
-  padding-left: 0;
-}
-.searchListItem {
-  cursor: pointer;
-  height: 45px;
-  padding-left: 10px;
-  font-size: 10pt;
-  display: flex;
-  align-items: center;
-  transition: background 0.2s ease-in-out;
-}
-.searchListItem:first-child {
-  border-top: none;
-}
-.searchListItem:hover {
-  background: #F2F2F2;
-}
-.searchListItemIcon {
-  margin-right: 10px;
-  width: 30px;
-  text-align: center;
-}
-.searchListItemIcon img {
-  width: 15px;
-}
-.searchListItemTextName {
-  font-weight: bold;
-  text-align: left;
-}
-.searchListItem li {
-  transition: background 0.2s ease-in-out;
-  border-radius: none;
-}
-.searchListItem li:hover {
-  background: #CACACA;
+  &__list {
+    padding-left: 0;
+    &__item {
+      cursor: pointer;
+      height: 45px;
+      padding-left: 10px;
+      font-size: 10pt;
+      display: flex;
+      align-items: center;
+      transition: background 0.2s ease-in-out;
+      border-radius: none;
+      &:first-child {
+        border-top: none;
+      }
+      &:hover {
+        background: #F2F2F2;
+        background: #CACACA;
+      }
+      &__icon {
+        margin-right: 10px;
+        width: 30px;
+        text-align: center;
+        &__img {
+          width: 15px;
+        }
+      }
+      &__text {
+        &__textName {
+          font-weight: bold;
+          text-align: left;
+        }      
+      }
+    }
+  }
 }
 .list-group-item:first-child {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-
 }
 </style>

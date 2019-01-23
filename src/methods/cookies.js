@@ -43,7 +43,8 @@ export const saveUsername = function () {
   // Create the cookie
   this.setCookie(
     `${SETTINGS.cookieNameFirstPart}${this.eventID}`,
-    { user: {
+    { 
+      user: {
         name: username,
         pinsCreated: this.pinsCreated,
         pinsVoted: this.pinsVoted
@@ -57,7 +58,8 @@ export const saveUsername = function () {
 export const updateCookie = function () {
   this.setCookie(
     `${SETTINGS.cookieNameFirstPart}${this.eventID}`,
-    { user: {
+    { 
+      user: {
         name: this.currentUser,
         pinsCreated: this.pinsCreated,
         pinsVoted: this.pinsVoted

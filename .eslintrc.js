@@ -21,7 +21,8 @@ module.exports = {
     'prefer-arrow-callback': 0,
     'prefer-template': 0,
     'no-mixed-operators': 0,
-    'no-bitwise': 0
+    'no-bitwise': 0,
+    'prefer-destructuring': 0
   },
   parserOptions: {
     parser: 'babel-eslint',
