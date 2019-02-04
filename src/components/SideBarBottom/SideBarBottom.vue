@@ -11,7 +11,7 @@
       v-if="appState === appStates.wigotCreation && currentEvent.pins && currentEvent.pins.length > 0"
       class="sideBarBottom__createWigot"
     >
-      <div class="createWigotText">
+      <div class="sideBarBottom__createWigot__text">
         Everything set up? Create your Wigot to start sharing it.
       </div>
       <button
@@ -67,6 +67,9 @@ export default {
     padding: 0px 20px;
     width: 100%;
     text-align: center;
+    &__text {
+      font-size: 10pt;
+    }
     &__button {
       margin: 20px auto;
       display: block;
@@ -75,6 +78,7 @@ export default {
       border-radius: 50px;
       background: #00C5FA;
       border: none;
+      font-size: 10pt;
     }
   }
 }

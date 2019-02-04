@@ -56,7 +56,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="stylus">
+<style lang="stylus">
 
 .searchResults {
   padding-left: 0;
@@ -68,8 +68,13 @@ export default {
   margin-left: 22px;
   margin-top: 5px;
   border: solid 1px lightgrey;
+  position: fixed;
+  left: 0;
+  top: 55px;
+  width: 100%;
   &__list {
     padding-left: 0;
+    margin-bottom: 0;
     &__item {
       cursor: pointer;
       height: 45px;
@@ -90,12 +95,12 @@ export default {
         margin-right: 10px;
         width: 30px;
         text-align: center;
-        &__img {
+        &__img {
           width: 15px;
         }
       }
       &__text {
-        &__textName {
+        &__name {
           font-weight: bold;
           text-align: left;
         }      

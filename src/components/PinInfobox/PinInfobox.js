@@ -1,51 +1,51 @@
-const PinInfoBox = function(pin, index) {
+/*
+*   Styling located in ./src/styles.styl
+*/
+
+const PinInfoBox = function (pin, index) {
   const pinRating = `
-    <div class="rating">
+    <div class="pinInfoBox__rating">
       ${pin.rating} <i class="fas fa-star"></i>
     </div>
   `
   const pinPrice = `
-    <div class="price">
+    <div class="pinInfoBox__price">
       ${pin.price}
     </div>
   `
 
   const printCategories = (categories) => {
-    const categoriesNode = categories.map((cat, index) => {
-      return `
-        <span>${cat.title}</span>
-      `
-    })
+    const categoriesNode = categories.map(cat => <span>${cat.title}</span>)
 
     return categoriesNode;
   }
 
   const pinCategories = `
-    <div class="categories">
+    <div class="pinInfoBox__categories">
       ${pin.categories ? printCategories(pin.categories) : ''}
     </div>
   `
 
   const pinImage = `
-    <div class="image">
+    <div class="pinInfoBox__image">
       <img src="${pin.image}" alt="" />
     </div>
   `
 
   return `
-    <div class="pinPopup">
+    <div class="pinInfoBox">
       ${pin.image ? pinImage : ''}
-      <div class="name">
+      <div class="pinInfoBox__name">
         ${pin.name}
       </div>
-      <div class="address">
+      <div class="pinInfoBox__address">
         ${pin.address}
       </div>
       ${pin.rating ? pinRating : ''}
       ${pin.price ? pinPrice : ''}
       ${pin.categories ? pinCategories : ''}
       <button
-        class="pinPopupCreateButton btn btn-primary"
+        class="pinInfoBox__button btn btn-primary"
         onclick="vm.increaseScorePin(${index})"
       >
         Vote
